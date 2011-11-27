@@ -35,7 +35,7 @@
 
 
 	<div class="row">
-		<div class="span11 columns">
+		<div class="span16 columns">
 		
 		
 		<h4>$.handleForm() is..</h4>
@@ -82,6 +82,16 @@ if($this->Modelname->invalidFields()) {
 </pre>
 	
 	<p>Yes, we're breaking the MVC a bit. A smoother solution would be to move this into a Component and trigged this on beforeSave() or similar. Maybe we'll get there.</p>
+	
+	<ul class="">
+	<h3>Any other backend <small>can respond with something like this</small></h3>
+
+<pre class="prettyprint linenums lang-json">
+{"validationErrors":
+	{"username":["You must supply a username"]}
+}	
+</pre>
+	</ul>
 		
 		<div class="clearfix"><br><br></div>		
 	
@@ -137,53 +147,6 @@ echo $this->Form->create('Modelname', array(
 		</p>
 
 	
-		</div>
-		<div class="span5 columns">
-			<!-- FORM sample CakePHP generated -->
-				<form action="/github/cakephp/Temp" id="sampleForm" class="form-stacked" method="post" accept-charset="utf-8">
-					
-					<fieldset>
-						<legend>Example form</legend>
-					</fieldset>
-					
-					<div style="display:none;">
-						<input type="hidden" name="_method" value="POST"/>
-					</div>
-					
-					<div class="clearfix">
-						<label for="UserName">Name</label>
-						<div class="input">
-							<input name="data[Temp][name]" type="text" id="UserName"/>
-						</div>
-					</div>
-					
-					<div class="clearfix">
-						<label for="UserUsername">Username</label>
-						<div class="input">
-							<input name="data[Temp][username]" type="text" id="UserUsername"/>
-						</div>
-					</div>
-					
-					<div class="clearfix">
-						<label for="UserPassword">Password</label>
-						<div class="input">
-							<input name="data[Temp][password]" type="password" id="UserPassword"/>
-						</div>
-					</div>
-					
-					<div class="clearfix">
-						<label for="UserAbout">About</label>
-							<div class="input">
-								<textarea name="data[Temp][about]" cols="30" rows="6" id="UserAbout"></textarea>
-							</div>
-						</div>
-						
-					<div class="submit"><input class="btn success" type="submit" value="submit"/></div>
-				
-				</form>
-			<!-- // FORM -->
-		
-		
 		</div>
 	</div>
 
