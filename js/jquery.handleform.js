@@ -142,15 +142,23 @@
 			
 			 // Show success message
 			if (!$(handleFormOptions.successContainer).length) {
-			
+					
 					// Create it.
       				$(form).prepend('<div class="' + handleFormOptions.successContainer.substr(1) +'"></div>');
       		}
       		
+      		
+			// Build our error template
+			var tmpl = '<div class="alert-message block-message info">';
+				tmpl += '<p>';
+				tmpl += '<strong>' + handleFormOptions.successMessage + '</strong>';
+				tmpl += '</p>';
+				tmpl += '</div>';
+						
       		// Empty any previous error messages, insert the new errors and slide it in to view.
       		$(handleFormOptions.successContainer)
       			.empty()
-      			.html(handleFormOptions.successMessage)
+      			.html(tmpl)
       			.slideDown(handleFormOptions.transitionTime);
 			
 		
