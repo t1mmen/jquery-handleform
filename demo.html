@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>$.handleForm()</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.css" rel="stylesheet">
+
+    <style type="text/css">
+      body {
+        padding-top: 60px !important;
+      }
+    </style>
+    
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>$.handleForm()</h1>
+        <p>The jQuery script that understands your Bootstrap frontend and CakePHP backend.</p>
+        <p>
+        	<a class="btn primary">Download on GitHub &raquo;</a> 	<small>version 0.9</small>
+        </p>
+      </div>
+
+
+	<div class="row">
+		<div class="span8 columns">
+		
+		
+		<h2>How to use</h2>
+		
+<pre class="prettyprint linenums">
+$(selector).handleForm( function() {
+	cakephpModel : false,
+});
+</pre>
+		
+		
+		</div>
+		<div class="span8 columns">
+			<!-- FORM sample CakePHP generated -->
+				<form action="/github/cakephp/Temp" id="sampleForm" class="form-stacked" method="post" accept-charset="utf-8">
+					
+					<fieldset>
+						<legend>Example form</legend>
+					</fieldset>
+					
+					<div style="display:none;">
+						<input type="hidden" name="_method" value="POST"/>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserName">Name</label>
+						<div class="input">
+							<input name="data[Temp][name]" type="text" id="UserName"/>
+						</div>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserUsername">Username</label>
+						<div class="input">
+							<input name="data[Temp][username]" type="text" id="UserUsername"/>
+						</div>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserPassword">Password</label>
+						<div class="input">
+							<input name="data[Temp][password]" type="password" id="UserPassword"/>
+						</div>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserAbout">About</label>
+							<div class="input">
+								<textarea name="data[Temp][about]" cols="30" rows="6" id="UserAbout"></textarea>
+							</div>
+						</div>
+						
+					<div class="submit"><input class="btn success" type="submit" value="submit"/></div>
+				
+				</form>
+			<!-- // FORM -->
+		
+		
+		</div>
+	</div>
+
+
+
+
+      <footer>
+        <p>&copy; Company 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Le javascript -->
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+    <script>$(function () { prettyPrint() })</script>
+    
+
+	
+    <script src="js/jquery.handleform.js"></script>
+	<script>
+
+    $(document).ready(function() {
+    	
+    	$('#sampleForm').handleForm({
+    		cakephpModel : 'Temp',
+
+    	
+    	});
+    	
+    
+    });
+    	
+	</script>
+    
+  </body>
+</html>
