@@ -1,8 +1,10 @@
 /*!
  * jQuery $.handleForm
- * Original author: @ajpiano
- * Further changes, comments: @addyosmani
+ * Original author: @t1mmen
  * Licensed under the MIT license
+ *
+ * 
+ *
  */
 
 ;(function ( $, window, document, undefined ) {
