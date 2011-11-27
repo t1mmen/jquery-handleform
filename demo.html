@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>$.handleForm()</title>
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.css" rel="stylesheet">
+    <link href="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.css" rel="stylesheet">
+    
+
+    <style type="text/css">
+      body {
+        padding-top: 60px !important;
+      }
+    </style>
+    
+
+  </head>
+
+  <body>
+
+    <div class="container">
+
+      <!-- Main hero unit for a primary marketing message or call to action -->
+      <div class="hero-unit">
+        <h1>$.handleForm()</h1>
+        <p>The jQuery script that understands your Bootstrap frontend and CakePHP backend.</p>
+        <p>
+        	<a class="btn primary" href="https://github.com/t1mmen/jquery-handleform">Download on GitHub &raquo;</a> 	
+        </p>
+      </div>
+
+
+	<div class="row">
+		<div class="span11 columns">
+		
+		
+		<h4>$.handleForm() is..</h4>
+
+		<p>
+			A simple jQuery script that takes care of ajaxifying your forms. 
+		</p>
+		<p>
+			Used with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and 
+			<a href="http://www.cakephp.org">CakePHP</a>, it makes
+			validating input on the backend really simple too.
+		</p>
+		
+		<hr>
+		
+		<h2>1. Installation <small>on the front end</small></h2>
+
+		<p>
+			To get it working, set up your CakePHP's <code>layout.ctp</code> with
+		</p>
+			
+<pre class="prettyprint linenums lang-html">
+&#060;script src="path/to/jquery-latest.min.js"&#062;&#060;/script&#062;
+&#060;script src="path/to/jquery.handleform.js"&#062;&#060;/script&#062;
+&#060;link href="path/to/bootstrap.css" rel="stylesheet"&#062;
+</pre>
+
+		<div class="clearfix"><br><br></div>
+
+		<h2>2. Backend setup <small>with CakePHP</small></h2>
+
+		<p>
+			For validation error messages, add this to your <code>Controller</code>'s <code>action()</code>:
+		</p>
+			
+<pre class="prettyprint linenums lang-php">
+if($this->Modelname->invalidFields()) {
+	header('Content-type: application/json');
+	$this->autoRender = false;
+	$response = array('validationErrors' => $this->Temp->invalidFields());
+	echo json_encode($response);
+	exit();
+}	
+</pre>
+	
+	<p>Yes, we're breaking the MVC a bit. A smoother solution would be to move this into a Component and trigged this on beforeSave() or similar. Maybe we'll get there.</p>
+		
+		<div class="clearfix"><br><br></div>		
+	
+		<h2>3. Frontend setup</h2>
+
+		<p>
+			By default, you shouldn't have to change any of the defaults. In any case, these are the options you have:
+		</p>
+			
+<pre class="prettyprint linenums lang-js">
+$(selector).handleForm( function() {
+	trigger : 'submit', 
+	transitionTime : 250,
+	cakephpModel : '', 
+	loadingText : 'Saving…',
+	target : false,
+	targetMethod : 'replaceWith', 
+	closeModal : false, 
+	successMessage : 'Great success!',  
+	successUrl : false,
+	successContainer : '.success-message-container', 
+	errorMessage : 'Uh oh, something went wrong skipper:', 
+	errorClass : 'warning',
+	errorUrl : false, 
+	errorContainer : '.error-message-container', 
+	onJsonSuccess : false, 
+	onSuccess : false,
+	onError : false,
+});
+</pre>
+
+		<div class="clearfix"><br><br></div>
+		
+		<h2>4. Optional CakePHP stuff</h2>
+
+		<p>
+			If you want to make CakePHP forms look nicer in Bootstrap (and also, make error messages appear properly), try something this:
+		</p>
+
+<pre class="prettyprint linenums lang-php">
+echo $this->Form->create('Modelname', array(
+	'class' => 'form-stacked',
+	'inputDefaults' => array(
+		'div' => 'clearfix',
+		'between' => '&#060;div class="input"&#062;',
+		'after' => '&#060;/div&#062;',
+    )
+));	
+</pre>
+
+		<p>
+			<strong>Note:</strong> Haven't looked at radio/checkboxes and selects yet, this probably breaks them somehow.
+		</p>
+
+	
+		</div>
+		<div class="span5 columns">
+			<!-- FORM sample CakePHP generated -->
+				<form action="/github/cakephp/Temp" id="sampleForm" class="form-stacked" method="post" accept-charset="utf-8">
+					
+					<fieldset>
+						<legend>Example form</legend>
+					</fieldset>
+					
+					<div style="display:none;">
+						<input type="hidden" name="_method" value="POST"/>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserName">Name</label>
+						<div class="input">
+							<input name="data[Temp][name]" type="text" id="UserName"/>
+						</div>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserUsername">Username</label>
+						<div class="input">
+							<input name="data[Temp][username]" type="text" id="UserUsername"/>
+						</div>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserPassword">Password</label>
+						<div class="input">
+							<input name="data[Temp][password]" type="password" id="UserPassword"/>
+						</div>
+					</div>
+					
+					<div class="clearfix">
+						<label for="UserAbout">About</label>
+							<div class="input">
+								<textarea name="data[Temp][about]" cols="30" rows="6" id="UserAbout"></textarea>
+							</div>
+						</div>
+						
+					<div class="submit"><input class="btn success" type="submit" value="submit"/></div>
+				
+				</form>
+			<!-- // FORM -->
+		
+		
+		</div>
+	</div>
+
+
+
+
+      <footer>
+        <p>&copy; <a href="https://twitter.com/#!/t1mmen">@t1mmen</a> 2011</p>
+      </footer>
+
+    </div> <!-- /container -->
+
+
+    <!-- Le javascript -->
+    <script src="http://code.jquery.com/jquery-1.7.1.min.js"></script>
+    <script src="http://twitter.github.com/bootstrap/assets/js/google-code-prettify/prettify.js"></script>
+    <script>$(function () { prettyPrint() })</script>
+    
+
+	
+    <script src="js/jquery.handleform.js"></script>
+	<script>
+
+    $(document).ready(function() {
+    	
+    	$('#sampleForm').handleForm({
+    		cakephpModel : 'Temp',
+
+    	
+    	});
+    	
+    
+    });
+    	
+	</script>
+    
+  </body>
+</html>
