@@ -26,12 +26,15 @@
 
       <!-- Main hero unit for a primary marketing message or call to action -->
       <div class="hero-unit">
-        <h1>$.handleForm()</h1>
-        <p>The jQuery &#060;FORM&#062; handler between your Bootstrap frontend and CakePHP backend.</p>
+        <h1>$.handleForm() <small>is..</small></h1>
+        <p>… a simple jQuery plugin that submits your forms with $.ajax(), without the hassle.</p>
         <p>
         
         	<div class="pull-left">
-				<a class="btn primary" href="https://github.com/t1mmen/jquery-handleform">Download on GitHub &raquo;</a> 	        	
+			
+				<a class="btn primary" href="https://github.com/t1mmen/jquery-handleform">Download on GitHub &raquo;</a> 
+				<a class="btn success disabled" href="https://github.com/t1mmen/jquery-handleform">Try the demo &raquo;</a>
+	 	
         	</div>
         
         	<div class="pull-left" style="padding-left: 20px; margin-top: 5px;">
@@ -43,39 +46,201 @@
         </p>
       </div>
 
-
 	<div class="row">
-		<div class="span16 columns">
+		<div class="span4 columns">
 		
-		
-		<h4>$.handleForm() is..</h4>
+			<h4>$.handleForm() is also..</h4>
+	
+			<p>
+				Build specifically for use with Twitter's excellent Bootstrap CSS/JS framework.
+			</p>
+			<p>
+				It's flexibility, buildt with server-side validation in mind.
+			</p>
 
-		<p>
-			A simple jQuery script that takes care of ajaxifying your forms. 
-		</p>
-		<p>
-			Used with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a> and 
-			<a href="http://www.cakephp.org">CakePHP</a>, it makes
-			validating input on the backend really simple too.
-		</p>
 		
-		<hr>
+		</div>
+		<div class="span4 columns">
 		
-		<h2>1. Installation <small>on the front end</small></h2>
+			<h4>It's so pretty!</h4>
+	
+			<p>
+				Coupled with <a href="http://twitter.github.com/bootstrap/">Twitter Bootstrap</a>, it makes it <strong>super easy</strong> to have functional, beautiful <strong>ajaxified forms</strong> interact with your backend of choice.
+			</p>
+		
+		</div>
+		<div class="span4 columns">
+		
+			<h4>CakePHP you say?</h4>
+	
+			<p>
+				Ajax based forms with the <a href="http://www.cakephp.org" target="_blank">CakePHP</a> framework used to drive me nuts <i>and</i> make me hate the <code>$validate</code> array.
+				<br><br>
+				Well, not anymore.
+			</p>
+		
+		</div>
+		<div class="span4 columns">
+		
+			<h4>But I don't eat cake</h4>
+	
+			<p>
+				No worries, a little PHP <code>json_encode()</code> (or similar) trickery on the backend should get you up and running. 
+			</p>
+		
+		</div>
+	
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-		<p>
-			To get it working, set up your CakePHP's <code>layout.ctp</code> with
-		</p>
+	<div class="row" style="margin-top: 50px">
+	
+	
+		<div class="span4 columns">
+			<h2>Installation</h2>
+			<p>Just add <code>jquery.handleform.js</code> to your existing script list (after jQuery, of course)</p>
 			
+		</div>
+	
+		<div class="span12 columns">
+		
+		
 <pre class="prettyprint linenums lang-html">
-&#060;script src="path/to/jquery-latest.min.js"&#062;&#060;/script&#062;
+&#060;script src="path/to/jquery.js"&#062;&#060;/script&#062;
 &#060;script src="path/to/jquery.handleform.js"&#062;&#060;/script&#062;
+&#060!-- Might I recommend Twitter's Bootstrap too? --&#062;
 &#060;link href="path/to/bootstrap.css" rel="stylesheet"&#062;
 </pre>
 
-		<div class="clearfix"><br><br></div>
+				<span class="help-block">No, you don't NEED Bootstrap, but you'll want to implement the CSS classes the script uses to make things look non-ugly.</span>
+			
+		</div>
+	</div>
+	
+	
+	
+	<div class="row" style="margin-top: 50px">
+	
+	
+		<div class="span4 columns">
+			<h2>Using it</h2>
+			.. is pretty simple. 
+		</div>
+	
+		<div class="span12 columns">
+		
+		
+		
+<pre class="prettyprint linenums lang-js">
+$(function() {
+	$('#my_form').handleForm(); // That's it!
+});
+</pre>
 
-		<h2>2. Backend setup <small>with CakePHP</small></h2>
+			<p>
+				While no options are required, it won't be as exciting, obviously.
+	
+				Sure, you'll get a pretty message saying how the FORM request panned out, but that'll only get you so far.
+			</p>
+			<br>
+			<div class="page-header">
+				<h4>So you want the options? <small>You can't hand.. err, I mean, sure, here are the defaults:</small></h4>
+			</div>
+		
+<pre class="prettyprint linenums lang-js">
+$(selector).handleForm({
+
+	// on submit, blur, change, etc.
+	trigger : 'submit', 
+	
+	// Slide in/out errors & messages
+	transitionTime : 250,
+	
+	// What should the submit button text read while working?
+	loadingText : 'Saving…',
+	
+	// What DOM element should the response be placed in?
+	target : false,
+	
+	// How do you want the response placed in the target?
+	targetMethod : 'replaceWith', 
+	
+	// Using Bootstrap's modal script? This one's for you:
+	closeModal : false, 
+	
+	// What should the success message read?
+	successMessage : 'Great success!',  
+	
+	// Or perhaps, forward to another URL when successful?
+	successUrl : false,
+	
+	// Give the successMessage some screentime before moving on? (in ms)
+	successUrlDelay : 0,
+	
+	// Where should the successMessage be shown?
+	// If you don't specifym the $.handleForm() will .append it to your $(selector)
+	successContainer : '.success-message-container', 
+	
+	// When things go wrong, what should we tell the user?
+	errorMessage : 'Uh oh, something went wrong skipper:',
+	
+	// .. and with what (bootstrap) alert-message class? 
+	errorClass : 'warning',
+	
+	// When requests go sideways, place the errorMessage in...
+	errorContainer : '.error-message-container', 
+	
+	// Send the user somewhere else if the request fails?
+	errorUrl : false, 
+	
+	/*
+	 Ah, the callbacks. These are pretty self explanatory. 
+	 ie. onSuccess : function(data) { alert('Look ma, I got me some ' + data); }
+	 
+	 Also of note: var handleFormOptions.optionname are available in the callbacks.
+	*/
+		
+	// Specific when recieving a JSON response
+	onJsonSuccess : false, 
+	
+	// Always run on successful request.
+	onSuccess : false,
+	
+	// Always run on unsuccessful request.
+	onError : false,
+});
+</pre>		
+		
+		</div>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	<div class="row" style="margin-top: 50px">
+	
+	
+		<div class="span4 columns">
+			<h2>Backend</h2>
+			is exactly this easy:
+		</div>
+	
+	
+		<div class="span12 columns">		
 
 		<p>
 			For validation error messages, add this to your <code>Controller</code>'s <code>action()</code>:
@@ -91,7 +256,7 @@ if($this->Modelname->invalidFields()) {
 }	
 </pre>
 	
-	<p>Yes, we're breaking the MVC a bit. A smoother solution would be to move this into a Component and trigged this on beforeSave() or similar. Maybe we'll get there.</p>
+	<p>Yes, we're breaking the MVC a bit. A smoother solution would be to move this into a Component and trigged this on beforeRender() or similar, and render an actual json view. I'll leave that up to you guys for now.</p>
 	
 	<ul class="">
 	<h3>Any other backend <small>can respond with something like this</small></h3>
@@ -101,45 +266,41 @@ if($this->Modelname->invalidFields()) {
 	{"username":["You must supply a username"]}
 }	
 </pre>
+	<span class="help-block">Notice the peculiar formatting for the username object. That's because of CakePHP's insistence on sending us three validation errors per field. Maybe I'll clean that up in the future. </span>
 	</ul>
-		
-		<div class="clearfix"><br><br></div>		
-	
-		<h2>3. Frontend setup</h2>
-
-		<p>
-			By default, you shouldn't have to change any of the defaults. In any case, these are the options you have:
-		</p>
 			
-<pre class="prettyprint linenums lang-js">
-$(selector).handleForm( function() {
-	trigger : 'submit', 
-	transitionTime : 250,
-	loadingText : 'Saving…',
-	target : false,
-	targetMethod : 'replaceWith', 
-	closeModal : false, 
-	successMessage : 'Great success!',  
-	successUrl : false,
-	successUrlDelay : 0,
-	successContainer : '.success-message-container', 
-	errorMessage : 'Uh oh, something went wrong skipper:', 
-	errorClass : 'warning',
-	errorUrl : false, 
-	errorContainer : '.error-message-container', 
-	onJsonSuccess : false, 
-	onSuccess : false,
-	onError : false,
-});
-</pre>
-
-		<div class="clearfix"><br><br></div>
+		</div>
 		
-		<h2>4. Optional CakePHP stuff</h2>
+	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
-		<p>
-			If you want to make CakePHP forms look nicer in Bootstrap (and also, make error messages appear properly), try something this:
-		</p>
+	<div class="row" style="margin-top: 50px">
+	
+	
+		<div class="span4 columns">
+			<h2>A heads up</h2>
+			<p>
+	If you want to make CakePHP forms look nicer in Bootstrap (and also, make error messages appear properly), try something this when creating your forms:
+			</p>
+		</div>
+	
+	
+		<div class="span12 columns">		
+
 
 <pre class="prettyprint linenums lang-php">
 echo $this->Form->create('Modelname', array(
@@ -153,7 +314,7 @@ echo $this->Form->create('Modelname', array(
 </pre>
 
 		<p>
-			<strong>Note:</strong> Haven't looked at radio/checkboxes and selects yet, this probably breaks them somehow.
+			<strong>Note:</strong> This will probably break havoc on your radio/checkboxes and stuff.
 		</p>
 
 	
