@@ -4,7 +4,7 @@
  * Licensed under the MIT license
  * 
  * @url : https://github.com/t1mmen/jquery-handleform/
- * @date : Nov 29th, 14:51 2011
+ * @date : Nov 29th, 15:29 2011
  */
 
 ;(function ( $, window, document, undefined ) {
@@ -143,7 +143,9 @@
 				
 				// If the container exists.
 				if ($(handleFormOptions.target).length) {
-					$(handleFormOptions.target).replaceWith(data); //@todo options.targetMethod
+				
+					// And put response into .target using .targetMethod
+					$(handleFormOptions.target)[options.targetMethod](response); 
 				} else {
 					console.log('No target container exists');
 				}
