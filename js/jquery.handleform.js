@@ -139,7 +139,7 @@
 				
 				// If the container exists.
 				if ($(handleFormOptions.target).length) {
-					$(handleFormOptions.target).replaceWidth(data); //@todo options.targetMethod
+					$(handleFormOptions.target).replaceWith(data); //@todo options.targetMethod
 				} else {
 					console.log('No target container exists');
 				}
