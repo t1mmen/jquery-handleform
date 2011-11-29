@@ -2,9 +2,9 @@
  * jQuery $.handleForm
  * Original author: @t1mmen
  * Licensed under the MIT license
- *
  * 
- *
+ * @url : https://github.com/t1mmen/jquery-handleform/
+ * @date : Nov 29th, 14:51 2011
  */
 
 ;(function ( $, window, document, undefined ) {
@@ -19,11 +19,6 @@
 
 			// Find the submit button in the form			
 			var $button = $(form).find('input[type=submit]');
-
-			// What should the button say when loading? data- overwrites default
-			if ($(form).attr('data-loading-text')) {
-				//@todo
-			}
 						
 			// Remember the text on the submit button..
 			if (!$button.attr('data-default-text')) {
@@ -125,11 +120,20 @@
 			// Do we want to close the modal?
 			if (handleFormOptions.closeModal) {
 				
-				// If the .modal dom element exists,
-				if ($('.modal').length) {
+				var $modal = $('.modal');
 				
-					// Hide it, ref: http://twitter.github.com/bootstrap/javascript.html#modal
-					$(form).closest('.modal').modal('hide');
+				// If the .modal dom element exists,
+				if ($modal.length) {
+				
+					// .. and it has the id of #facebox (https://github.com/defunkt/facebox)
+					if ($modal.attr('id') == 'facebox') {
+						
+						jQuery(document).trigger('close.facebox')
+						
+					// If we're not using Facebox, we assume it's twitters modal script
+					} else {
+						$(form).closest('.modal').modal('hide');
+					}
 				}
 				
 			}
@@ -147,27 +151,32 @@
 				
 			}
 			
+			// If we're setting a successmessage (as in, it's != false)
+			if (handleFormOptions.successMessage) {
 			
-			 // Show success message
-			if (!$(handleFormOptions.successContainer).length) {
-					
-					// Create it.
-      				$(form).prepend('<div class="' + handleFormOptions.successContainer.substr(1) +'" style="display:none"></div>');
-      		}
-      		
-      		
-			// Build our error template
-			var tmpl = '<div class="alert-message block-message info">';
-				tmpl += '<p>';
-				tmpl += '<strong>' + handleFormOptions.successMessage + '</strong>';
-				tmpl += '</p>';
-				tmpl += '</div>';
-						
-      		// Empty any previous error messages, insert the new errors and slide it in to view.
-      		$(handleFormOptions.successContainer)
-      			.empty()
-      			.html(tmpl)
-      			.slideDown(handleFormOptions.transitionTime);
+				 // Do we have a place to put it?
+				if (!$(handleFormOptions.successContainer).length) {
+
+						// Create it.
+	      				$(form).prepend('<div class="' + handleFormOptions.successContainer.substr(1) +'" style="display:none"></div>');
+	      		}
+	      		
+				// Build our success template
+				var tmpl = '<div class="alert-message block-message  '+ handleFormOptions.successClass +'"">';
+					tmpl += '<p>';
+					tmpl += '<strong>' + handleFormOptions.successMessage + '</strong>';
+					tmpl += '</p>';
+					tmpl += '</div>';
+							
+	      		// Empty any previous error messages, insert the new errors and slide it in to view.
+	      		$(handleFormOptions.successContainer)
+	      			.empty()
+	      			.html(tmpl)
+	      			.slideDown(handleFormOptions.transitionTime);			
+			
+			}
+			
+
 			
 		
 		},	
@@ -203,6 +212,9 @@
              // If we're forwarding on success
             successMessage 	: 'Great success!',  
             
+            // Which of the .alert-message substyles to use on success? NO PERIOD!
+            successClass : 'info',
+            
             // Want to send the user somewhere on successfull request?
             successUrl 		: false,
             
@@ -211,9 +223,7 @@
 			
 			// Where do you want the good news?
 			successContainer: '.success-message-container', 
-			
-			// @todo make a snippet that shows error messages too, based $.on(successContainer).('change'…
-			
+						
 			// What should read above the validation errors?            
             errorMessage	: 'Uh oh, something went wrong skipper:', // @todo, new name for above
             
@@ -337,7 +347,7 @@
 											
 					}
 										
-					// Take care of su
+					// Take care of successful request
 					return functions.handleSuccess(data, $(form));					
 					
 	
