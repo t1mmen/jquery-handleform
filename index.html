@@ -181,13 +181,17 @@ $(selector).handleForm({
 	target : false,
 	
 	// How do you want the response placed in the target?
+	// @todo this – help plez?
 	targetMethod : 'replaceWith', 
 	
-	// Using Bootstrap's modal script? This one's for you:
+	// Using Bootstrap's modal script or Facebox? This one's for you:
 	closeModal : false, 
 	
 	// What should the success message read?
 	successMessage : 'Great success!',  
+	
+	// .. and with what (bootstrap) alert-message class? 
+	successClass : 'info',
 	
 	// Or perhaps, forward to another URL when successful?
 	successUrl : false,
@@ -196,7 +200,7 @@ $(selector).handleForm({
 	successUrlDelay : 0,
 	
 	// Where should the successMessage be shown?
-	// If you don't specifym the $.handleForm() will .append it to your $(selector)
+	// If you don't specify the $.handleForm() will create and .append it to your $(selector)
 	successContainer : '.success-message-container', 
 	
 	// When things go wrong, what should we tell the user?
