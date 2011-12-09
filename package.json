@@ -1,0 +1,32 @@
+{
+    "name": "handleForm",
+    "version": "0.9",
+    "title": "$.handleForm()",
+    "author": {
+        "name": "Timm Stokke",
+        "url": "http://timm.stokke.me"
+    },
+	"licenses": [
+	   {
+	       "type": "GPLv3",
+	       "url": "http://www.gnu.org/copyleft/gpl.html",
+	   }
+	],
+    "dependencies": {
+        "jquery": "1.3"
+    },
+    "description": "A simple jQuery plugin that submits your forms with $.ajax(), without the hassle. Integrates beautifully with CakePHP on the backend and Twitters Bootstrap on the frontend.",
+    "keywords": [
+        "ajax",
+        "form",
+        "error handeling",
+        "validation",
+        "bootstrap",
+        "cakephp",
+        "twitter bootstrap"
+    ],
+    "homepage": "http://t1mmen.github.com/jquery-handleform/",
+    "files": [
+        "jquery.handleform.js"
+    ]
+}
